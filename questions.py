@@ -66,10 +66,48 @@ class Solution:
                 n -= 1
         num1[:m] = num2[:m]
 
+    def maxKilledEnemies(self, grid: List[List[str]]) -> int:
+        if grid == [] or grid == [[]]:
+            return 0
+        ans = []
+        def countnums(gridline:List[str]):
+            if gridline == []:
+                return 0
+            if gridline.count('W') != 0:
+                index = gridline.index('W')
+                return gridline[:index].count('E')
+            else:
+                return gridline.count('E')
+        n, m = len(grid), len(grid[0])
+        for x in range(n):
+            for y in range(m):
+                nums = 0
+                if grid[x][y] == 'E' or grid[x][y] == 'W':
+                    continue
+                else:
+                    if y != m-1:
+                        nums += countnums(grid[x][y+1:])
+                    if y != 0:
+                        a = grid[x][:y]
+                        a = a[::-1]
+                        nums += countnums(a)
+                        #print(nums)
+                    if x != n-1:
+                        nums += countnums([a[y] for a in grid[x+1:]])
+                    if x != 0:
+                        a = [a[y] for a in grid[:x]]
+                        a = a[::-1]
+                        nums += countnums(a)
+                    ans.append(nums)
+        if ans == []:
+            return 0
+        return max(ans)
+
 
 
 
 if __name__ == "__main__":
-    matrix = [["0","1"]]
+    grid = [["W","E","E","E","E","0","E","E","E","E","E","W"]] 
     example = Solution()
-    a = example.maximalSquare(matrix)
+    a = example.maxKilledEnemies(grid)
+    print(a)
