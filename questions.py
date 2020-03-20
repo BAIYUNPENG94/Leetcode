@@ -56,6 +56,15 @@ class Solution:
                 ans = max(ans, size[i][j]*size[i][j])
         return ans
 
+    def merge(self, num1: List[int], n: int, num2: List[int], m: int) -> None:
+        while n > 0 and m > 0:
+            if num1[n-1] <= num2[m-1]:
+                num1[m+n-1] = num2[m-1]
+                m -= 1
+            else:
+                num1[m+n-1] = num1[n-1]
+                n -= 1
+        num1[:m] = num2[:m]
 
 
 
