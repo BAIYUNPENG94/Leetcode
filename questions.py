@@ -139,7 +139,16 @@ class Solution:
             return ans
         result = countans(root)
         return result
-
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        def invert(root):
+            if root == None:
+                return None
+            temp = invert(root.left)
+            root.left = invert(root.right)
+            root.right = temp
+            return root
+        root = invert(root)
+        return root
 
 
 
