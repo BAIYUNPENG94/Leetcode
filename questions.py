@@ -1,6 +1,12 @@
 from typing import List
 import collections
 
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 class Solution:
     def largestOverlap(self, A: List[List[int]], B: List[List[int]]) -> int:
         n = len(A)
@@ -115,6 +121,28 @@ class Solution:
             return True
         else:
             return False
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        def countans(root):
+            if root == None:
+                return 0
+            ans = max(countans(root.left), countans(root.right))
+            if root.left == None:
+                root.leftmax = 0
+            else:
+                root.leftmax = max(root.left.leftmax, root.left.rightmax) + 1
+            if root.right == None:
+                root.rightmax = 0
+            else:
+                root.rightmax = max(root.right.leftmax, root.right.rightmax) + 1
+            if root.rightmax + root.leftmax > ans:
+                ans = root.rightmax + root.leftmax
+            return ans
+        result = countans(root)
+        return result
+
+
+
+
 
 
 
