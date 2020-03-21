@@ -103,6 +103,18 @@ class Solution:
             return 0
         return max(ans)
 
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        Sdict = collections.defaultdict(int)
+        Tdict = collections.defaultdict(int)
+        for i in range(len(s)):
+            Sdict[s[i]] += 1
+            Tdict[t[i]] += 1
+        if Sdict == Tdict:
+            return True
+        else:
+            return False
 
 
 
