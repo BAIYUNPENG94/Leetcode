@@ -1,6 +1,27 @@
 from typing import List
 import collections
 
+class TopVotedCandidate:
+    def __init__(self, persons: List[int], times: List[int]):
+        self.lead, self.times, counts = [], times, {}
+        leadperson = -1
+        for candidate, time in zip(persons, times):
+            counts[candidate] = counts.get(candidate, 0) + 1 
+            if counts.get(leadperson, 0) <= counts[candidate]:
+                leadperson = candidate
+            self.lead.append(leadperson)
+    def q(self, t: int) -> int:
+        leftindex, rightindex = 0, len(self.times) - 1
+        while leftindex <= rightindex:
+            midindex = (leftindex + rightindex) // 2
+            if self.times[midindex] == t:
+                return self.lead[midindex]
+            elif midindex > t:
+                rightindex -= 1
+            else:
+                leftindex += 1
+            return self.lead[leftindex-1]
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -163,6 +184,8 @@ class Solution:
             else:
                 result[i] = str(i+1)
         return result
+
+
 
 
 
