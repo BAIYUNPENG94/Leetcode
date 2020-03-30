@@ -28,6 +28,13 @@ class TreeNode:
         self.left = None
         self.right = None
 
+class Node:
+    def __init__(self, val: int = 0, left: 'Node'= None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val 
+        self.left = left 
+        self.right = right 
+        self.next = next 
+
 class Solution:
     def largestOverlap(self, A: List[List[int]], B: List[List[int]]) -> int:
         n = len(A)
@@ -184,6 +191,9 @@ class Solution:
             else:
                 result[i] = str(i+1)
         return result
+
+    def connect(self, root: 'Node') -> 'Node':
+        return 0
 
 
 
