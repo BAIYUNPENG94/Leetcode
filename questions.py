@@ -192,8 +192,22 @@ class Solution:
                 result[i] = str(i+1)
         return result
 
-    def connect(self, root: 'Node') -> 'Node':
-        return 0
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not s and not t:
+            return True 
+        if not s or not t:
+            return False 
+        return self.isSametree(s, t) or self.isSametree(s.left, t) or self.isSametree(s.right, t)
+        
+
+    def isSametree(self, s: TreeNode, t: TreeNode):
+        if not s and not t:
+            return True
+        if not s or not t:
+            return False 
+        return s.val == t.val and self.isSametree(s.left, t.left) and self.isSametree(s.right, t.right)
+
+
 
 
 
