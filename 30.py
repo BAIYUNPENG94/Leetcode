@@ -1,7 +1,6 @@
 from typing import List
 
 
-
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         res = nums[0]
@@ -37,7 +36,7 @@ class Solution:
             if Sum > ans:
                 ans = Sum
         return ans
-    
+
     def moveZeroes(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -47,7 +46,7 @@ class Solution:
             if nums[index] != 0:
                 nums[lastzero], nums[index] = nums[index], nums[lastzero]
                 lastzero += 1
-            
+
     def maxProfit(self, prices: List[int]) -> int:
         profit, buy, sell = 0, 0, 0
         for index in range(len(prices)-1):
@@ -90,9 +89,55 @@ class Solution:
             else:
                 data[num] = 1
         return count
-        
+
+    def backspaceCompare(self, S: str, T: str) -> bool:
+        def dotheinput(S: str):
+            temp = ''
+            for cha in S:
+                if cha == '#':
+                    if len(temp) != 0:
+                        temp = temp[:-1]
+                else:
+                    temp += cha
+            return temp
+        return dotheinput(S) == dotheinput(T)
+
+    def maxDepth(self, root: TreeNode) -> int:
+        if root == None:
+            return 0
+        maxdep = 0
+
+        def getdown(root, maxdep):
+            if root == None:
+                return maxdep
+            else:
+                maxdep += 1
+                return max(getdown(root.left, maxdep), getdown(root.right, maxdep))
+        return getdown(root, maxdep)
+
+    def isValid(self, s: str) -> bool:
+        if s == '':
+            return True
+        stack = []
+        pairing = {
+            ')': '(',
+            ']': '[',
+            '}': '{'
+        }
+        for cha in s:
+            if cha in pairing:
+                if stack == []:
+                    return False
+                chapair = stack.pop()
+                if pairing[cha] != chapair:
+                    return False
+            else:
+                stack.append(cha)
+        return not stack
+
+
 
 if __name__ == "__main__":
     project = Solution()
-    a = project.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+    a = project.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])
     print(a)
