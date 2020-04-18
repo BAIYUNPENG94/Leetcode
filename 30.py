@@ -134,6 +134,23 @@ class Solution:
             else:
                 stack.append(cha)
         return not stack
+    
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        while len(stones)>= 2:
+            Max01 = max(stones)
+            stones.remove(Max01)
+            Max02 = max(stones)
+            stones.remove(Max02)
+            remain = abs(Max02-Max01)
+            if remain == 0:
+                continue
+            else:
+                stones.append(remain)
+        if len(stones) == 0:
+            return 0
+        if len(stones) == 1:
+            return stones[0] 
+            
 
 
 
