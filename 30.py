@@ -171,17 +171,25 @@ class Solution:
             else: movemove += shit[1]
         if movemove < 0:
             movemove = abs(movemove) % len(s)
-            s = s + s[:movemove]
-            s = s[movemove:]
+            s = s[movemove:] + s[:movemove]
         elif movemove > 0:
             movemove = abs(movemove) % len(s)
             s = s[-movemove:] + s[:-movemove]
         return s
 
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        answer = [1 for i in range(len(nums))]
+        tmp = 1
+        for index in range(len(nums)):
+            answer[index] *= tmp
+            tmp *= answer[index]
+        tmp = 1
+        for index in range(len(nums)-1, -1, -1):
+            answer[index] *= tmp
+            tmp *= answer[index]
+        return answer
 
-            
-
-            
+    def checkValidString(self, s: str) -> bool:
 
 
 
