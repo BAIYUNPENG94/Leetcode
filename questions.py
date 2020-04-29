@@ -28,6 +28,11 @@ class TreeNode:
         self.left = None
         self.right = None
 
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 class Node:
     def __init__(self, val: int = 0, left: 'Node'= None, right: 'Node' = None, next: 'Node' = None):
         self.val = val 
@@ -206,9 +211,44 @@ class Solution:
         if not s or not t:
             return False 
         return s.val == t.val and self.isSametree(s.left, t.left) and self.isSametree(s.right, t.right)
+    
+    def reverselist(self, Dummy, start, end):
+        while start != end:
+            tmp = start.next
+            start.next = tmp.next
+            tmp.next = start
+            Dummy.next = tmp
 
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        Answer, Dummy = ListNode(0), ListNode(0)
+        Dummy.next = head
+        start, end = head, head
+        count = 1
+        while(1):
+            if count % k == 0:
+                reverselist(Dummy, start, end)
+                if count / k == 1:
+                    Answer = Dummy 
+                Dummy = end
+                end = end.next
+            else:
+                count += 1
+                start = start.next
+            if start == None or start.next == None:
+                break
+        return Answer.next
 
+    def twoSum(self, nums:List[int], target: int) -> List[int]:
+        MatchSet = {}
+        for index in range(len(nums)):
+            if nums[index] in MatchSet:
+                answer = [MatchSet[nums[index]], index]
+            else:
+                MatchSet[target-nums[index]] = index
+        return answer
 
+    #def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
+        
 
 
 
@@ -217,7 +257,5 @@ class Solution:
 
 
 if __name__ == "__main__":
-    grid = [["W","E","E","E","E","0","E","E","E","E","E","W"]] 
-    example = Solution()
-    a = example.maxKilledEnemies(grid)
-    print(a)
+    a = 15.24 * 50000
+    print(a/4)

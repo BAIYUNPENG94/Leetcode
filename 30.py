@@ -150,6 +150,37 @@ class Solution:
             return 0
         if len(stones) == 1:
             return stones[0] 
+    
+    def findMaxLength(self, nums: List[int]) -> int:
+        Sum, Answer = 0, 0
+        Step = {0: -1}
+        for index in range(len(nums)):
+            if nums[index] == 1:
+                Sum += 1
+            else: Sum -= 1
+            if Sum in Step:
+                Answer = max(Answer, index - Step[Sum])
+            else: Step[Sum] = index
+        return Answer
+
+    def stringShift(self, s: str, shift: List[List[int]]) -> str:
+        movemove = 0
+        for shit in shift:
+            if shit[0] == 0:
+                movemove -= shit[1]
+            else: movemove += shit[1]
+        if movemove < 0:
+            movemove = abs(movemove) % len(s)
+            s = s + s[:movemove]
+            s = s[movemove:]
+        elif movemove > 0:
+            movemove = abs(movemove) % len(s)
+            s = s[-movemove:] + s[:-movemove]
+        return s
+
+
+            
+
             
 
 
