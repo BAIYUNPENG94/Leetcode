@@ -248,11 +248,27 @@ class Solution:
         return answer
 
     #def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        
 
+    def numJewelsInStones(self, J: str, S: str):
+        answer = 0
+        for stone in S:
+            if stone in J:
+                answer += 1
+        return answer
 
-
-
+    def firstUniqChar(self, s: str) -> int:
+        answer = []
+        log = {}
+        for cha in s:
+            if cha in log.keys():
+                if cha in answer:
+                    answer.remove(cha)
+            else:
+                answer.append(cha)
+                log[cha] = s.find(cha)
+        if answer == []:
+            return -1
+        return log[answer[0]]
 
 
 
