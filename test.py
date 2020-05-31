@@ -1,3 +1,7 @@
-a = [[1],[5]]
-a = a[::-1]
-print(a)
+import itertools
+
+x = "11122211"
+
+for digit, group in itertools.groupby(x):
+    print(digit)
+    print(list(group))

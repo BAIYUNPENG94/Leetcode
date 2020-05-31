@@ -270,6 +270,17 @@ class Solution:
             return -1
         return log[answer[0]]
 
+    def maxProfit(self, prices: List[int]) -> int:
+            if prices == []:
+                return 0
+            max_Profit = 0
+            lowest_Price = prices[0]
+            for price in prices[1:]:
+                if price - lowest_Price > max_Profit:
+                    max_Profit = price - lowest_Price
+                if price < lowest_Price:
+                    lowest_Price = price
+            return max_Profit
 
 
 if __name__ == "__main__":

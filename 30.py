@@ -1,8 +1,7 @@
 from typing import List
 
-
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
+    def singleNumber(self, nums):
         res = nums[0]
         for i in range(1, len(nums)):
             res = res ^ nums[i]
@@ -98,7 +97,6 @@ class Solution:
                     if len(temp) != 0:
                         temp = temp[:-1]
                 else:
-                    temp += cha
             return temp
         return dotheinput(S) == dotheinput(T)
 
@@ -189,7 +187,12 @@ class Solution:
             tmp *= answer[index]
         return answer
 
-    def checkValidString(self, s: str) -> bool:
+    def majorityElement(self, nums: List[int]) -> int:
+        nums.sort()
+        return nums[len(nums)//2]
+
+    def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
+
 
 
 
