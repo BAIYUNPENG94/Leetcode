@@ -1,5 +1,8 @@
 {
     "python.linting.enabled": false,
     "python.linting.mypyEnabled": false,
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
 }
