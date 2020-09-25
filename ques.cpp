@@ -211,6 +211,47 @@ public:
 		return true;
 	}
 
+	string decodeString(string s)
+	{
+		int i = 0;
+		return decode(s, i);
+	}
+
+	string decode(string s, int &i)
+	{
+		string res = "";
+		while (i < s.size() && s[i] != ']')
+		{
+			if (s[i] < '0' || s[i] > '9')
+			{
+				res += s[i++];
+			}
+			else
+			{
+				int count = 0;
+				while (s[i] >= '0' && s[i] <= '9')
+				{
+					count = 10 * count + s[i++] - '0';
+				}
+				++i;
+				string tmp = decode(s, i);
+				++i;
+				while (count > 0)
+				{
+					res += tmp;
+					--count;
+				}
+			}
+		}
+		return res;
+	}
+
+	int helloworld() {
+		cout << "hello, world\n";	//HAHA, this is just joking.
+		return 0;
+	} 
+
+
 private:
 	unordered_map<string, bool> mem_;
 };
@@ -276,6 +317,35 @@ private:
 	int cap;
 	list<pair<int, int>> stock;
 	unordered_map<int, list<pair<int, int>>::iterator> keystock;
+};
+
+class Logger
+{
+public:
+	Logger()
+	{
+	}
+
+	bool shouldPrintMessage(int timestamp, string message)
+	{
+		if (printlog.find(message) == printlog.end())
+		{
+			printlog[message] = timestamp;
+			return true;
+		}
+		else if (timestamp - printlog[message] >= 10)
+		{
+			printlog[message] = timestamp;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+private:
+	unordered_map<string, int> printlog;
 };
 
 int main()
